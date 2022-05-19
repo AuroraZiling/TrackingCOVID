@@ -16,7 +16,15 @@
 
 ### 数据处理器 *(Generator.py)*
 
-*摸了*
+#### 函数 `clarify_html(original_html, year, date_format)`
+
+`original_html`: 原始HTML文本
+
+`year`: 数据年份 *目前仅有2022年*
+
+`date_format`: 日期格式 *默认:default: January 1, 2022 | chinese: 2022年1月1日*
+
+返回值: `proceed_data` **类型:dict**
 
 ### 数据分析器 *(Analyzer.py)*
 

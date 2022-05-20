@@ -18,6 +18,8 @@
 
 #### 函数 `clarify_html(original_html, year, date_format)`
 
+作用: 将源HTML文本转换为字典数据
+
 `original_html`: 原始HTML文本
 
 `year`: 数据年份 *目前仅有2022年*
@@ -26,6 +28,14 @@
 
 返回值: `proceed_data` **类型:dict**
 
+#### 函数 `get_data_sequence(proceed_data, data_type)`
+
+作用: 筛选字典中的特定数据
+
+`proceed_data`: 字典数据
+
+`data_type`: 指定数据类型 *参数: confirmed_new confirmed_current asymptomatic_new asymptomatic_current recoveries deaths_new*
+
 ### 数据分析器 *(Analyzer.py)*
 
 *摸了*
@@ -33,3 +43,7 @@
 ### 数据渲染器 *(Renderer.py)*
 
 *摸了*
+
+## 已知问题
+
+1. 数据网站在2022年3月26日的`confirmed_current`为0

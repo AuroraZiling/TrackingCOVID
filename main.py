@@ -1,3 +1,7 @@
+"""
+看似是main，其实就是个调用端（
+"""
+
 from modules import updater, generator
 import time
 from rich.console import Console
@@ -15,5 +19,4 @@ with console.status("正在更新疫情数据..."):
 original_html = reply[0]
 with console.status("正在生成疫情数据..."):
     reply = generator.clarify_html(original_html, 2022, "chinese")
-search_date = console.input("[green]请输入查询日期(格式: 2022-1-1):[/]")
-print(reply[search_date])
+print(generator.get_data_sequence(reply, "confirmed_current"))

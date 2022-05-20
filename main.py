@@ -2,7 +2,7 @@
 看似是main，其实就是个调用端（
 """
 
-from modules import updater, generator
+from modules import updater, generator, renderer
 import time
 from rich.console import Console
 import os
@@ -19,4 +19,5 @@ with console.status("正在更新疫情数据..."):
 original_html = reply[0]
 with console.status("正在生成疫情数据..."):
     reply = generator.clarify_html(original_html, 2022, "chinese")
-print(generator.get_data_sequence(reply, "confirmed_current"))
+reply = generator.get_data_sequence(reply, "confirmed_current")
+renderer.as_line(reply, "confirmed_current")

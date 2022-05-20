@@ -10,7 +10,7 @@ def real_time_converter(data_time):
 
 
 def get_data_sequence(proceed_data, data_type):
-    return [proceed_data[each][data_type] for each in list(proceed_data.keys())][::-1]
+    return [{each: proceed_data[each][data_type]} for each in list(proceed_data.keys())][::-1]
 
 
 def clarify_html(original_html, year=2022, date_format="default"):
@@ -41,14 +41,13 @@ def clarify_html(original_html, year=2022, date_format="default"):
                 raise ValueError("'date_format' parameter must be 'default' or 'chinese'")
             proceed_data_model["confirmed_new"] = int(part[2].split()[1].replace(",", ""))
             proceed_data_model["confirmed_current"] = int(part[2].split()[3].replace(",", ""))
-            if proceed_data_model["confirmed_current"] == 0:
-                print(key_time)
-                break
             proceed_data_model["asymptomatic_new"] = int(part[3].split()[1].replace(",", ""))
             proceed_data_model["asymptomatic_current"] = int(part[3].split()[3].replace(",", ""))
             proceed_data_model["recoveries"] = int(part[4].split()[1].replace(",", ""))
             proceed_data_model["deaths_new"] = int(part[4].split()[4].replace(",", ""))
             proceed_data[key_time] = proceed_data_model.copy()
+        # 补丁(因为网页中有一些数据为0)
+        proceed_data["2022-3-26"]["confirmed_current"] = 27312
         return proceed_data
     else:
         raise ValueError("'year' parameter must be 2022")

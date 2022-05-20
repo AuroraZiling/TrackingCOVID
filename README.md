@@ -1,5 +1,7 @@
 # TrackingCOVID
 
+**施工中...**
+
 ~~实时~~追踪中国疫情数据
 
 *爬虫、数据分析练手项目（*
@@ -47,3 +49,7 @@
 ## 已知问题
 
 1. 数据网站在2022年3月26日的`confirmed_current`为0
+
+替代数据来源(已不可访问): *[中华人民共和国国家卫生健康委员会 截至3月25日24时新型冠状病毒肺炎疫情最新情况](http://www.nhc.gov.cn/xcs/yqfkdt/202203/232b8832229d4918acbcc66e9ce630fb.shtml)*
+
+*[替代数据来源快照](https://baikeshot.cdn.bcebos.com/reference/59764769/dad9b137738560268d1cb30f8ab65e85.png@!reference)*

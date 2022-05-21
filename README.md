@@ -72,6 +72,34 @@
 
 `chn_trans`: 是否翻译数据类型为中文 *默认:`False`*
 
+## 目标
+
+- [ ] 基本架构完成 *基本能用* **Processing** 
+- [ ] 支持2021和2020年的数据
+- [ ] 地区支持 **Planning**
+
+### 数据更新器
+
+- [ ] 类化 **Finished**
+- [ ] 可调控是否自动更新 **Planning**
+- [ ] 显示更新所需时间 **Planning**
+
+### 数据生成器
+
+- [ ] 类化 **Planning**
+- [ ] 完善原数据的数据类型 **Planning**  
+
+### 数据分析器
+
+- [ ] 趋势分析 **Planning**
+
+### 数据渲染器
+
+- [ ] 类化 **Planning**
+- [x] 多库数据渲染 *pygal, matplotlib, pandas_bokeh* **Basically Finished**
+- [ ] 渲染参数设置 **Planning**
+
+
 ## 已知问题 
 
 1. 数据网站在2022年3月26日的`confirmed_current`为0 **|已解决|**

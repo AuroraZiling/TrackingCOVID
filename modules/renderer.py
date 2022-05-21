@@ -4,8 +4,6 @@ import pygal
 
 import matplotlib.pyplot as plt
 
-import seaborn as sns
-
 import pandas as pd
 
 import numpy as np
@@ -36,11 +34,6 @@ def output_as_line(data_sequence, data_type, lib="pygal", filename="output.svg",
     elif lib == "matplotlib":
         plt.plot([list(each.keys())[0][5:] for each in data_sequence],
                  [list(each.values())[0] for each in data_sequence])
-        plt.show()
-    elif lib == "seaborn":
-        df = pd.DataFrame(dict(x=[list(each.keys())[0][5:] for each in data_sequence],
-                               y=[list(each.values())[0] for each in data_sequence]))
-        sns.lineplot(data=df, x='x', y='y')
         plt.show()
     elif lib == "pandas_bokeh":
         data_frame = {"Years": [list(each.keys())[0][5:] for each in data_sequence],

@@ -14,7 +14,21 @@
 
 [数据来源：中国疾病预防控制中心](https://weekly.chinacdc.cn/news/TrackingtheEpidemic.htm)
 
-相关库：`requests`
+相关库: `requests`
+
+#### 类: `Updater`
+
+传参: `year` *数据年份(仅支持2022)*
+
+#### 函数 `download_html()`
+
+作用: 下载原HTML文件，并存储至`data_backup`目录下
+
+返回结果: `(original_html, status)`
+
+`original_html`: 原HTML文件
+
+`status`: 获取数据的状态 *online: 在线更新 | offline: 使用了备份*
 
 ### 数据处理器 *(Generator.py)*
 
@@ -44,11 +58,23 @@
 
 ### 数据渲染器 *(Renderer.py)*
 
-*摸了*
+#### 函数 `output_as_line(data_sequence, data_type, filename, open_file, chn_trans)`
 
-## 已知问题
+作用: 将处理后的数据序列和指定的数据类型生成为折线图
 
-1. 数据网站在2022年3月26日的`confirmed_current`为0
+`data_sequence`: 处理后的数据序列
+
+`data_type`: 数据的类型
+
+`filename[optional]`: 导出的文件名 *默认:`output.svg` | 后缀为`.svg`*
+
+`open_file[optional]`: 是否生成数据图后打开文件 *默认:False*
+
+`chn_trans`: 是否翻译数据类型为中文 *默认:`False`*
+
+## 已知问题 
+
+1. 数据网站在2022年3月26日的`confirmed_current`为0 **|已解决|**
 
 替代数据来源(已不可访问): *[中华人民共和国国家卫生健康委员会 截至3月25日24时新型冠状病毒肺炎疫情最新情况](http://www.nhc.gov.cn/xcs/yqfkdt/202203/232b8832229d4918acbcc66e9ce630fb.shtml)*
 

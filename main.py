@@ -25,6 +25,6 @@ if year == 2022:
         generated_data = generator.clarify_html(original_html, year, "chinese")
     time.sleep(0.5)
     generated_data = generator.get_data_sequence(generated_data, aspect)
-    renderer.output_as_line(generated_data, aspect, "output.svg", True, True)
+    renderer.output_as_line(generated_data, aspect, "pandas_bokeh", "output.svg", True, True)
 else:
     raise ValueError("暂时只支持2022年的数据")

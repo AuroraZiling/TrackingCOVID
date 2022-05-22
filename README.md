@@ -20,7 +20,7 @@
 
 传参: `year` *数据年份(仅支持2022)*
 
-#### 函数 `download_html()`
+##### 函数 `download_html()`
 
 作用: 下载原HTML文件，并存储至`data_backup`目录下
 
@@ -32,9 +32,11 @@
 
 ### 数据处理器 *(Generator.py)*
 
-#### 函数 `clarify_html(original_html, year, date_format)`
+相关库: `beautifulsoup4`
 
-作用: 将源HTML文本转换为字典数据
+#### 类: `Generator`
+
+传参:
 
 `original_html`: 原始HTML文本
 
@@ -42,15 +44,19 @@
 
 `date_format`: 日期格式 *默认:default: January 1, 2022 | chinese: 2022年1月1日*
 
-返回值: `proceed_data` **类型:dict**
+##### 函数 `get_proceed_data(self)`
 
-#### 函数 `get_data_sequence(proceed_data, data_type)`
+作用: 获取处理后的数据
+
+返回结果: `proceed_data [dict]`
+
+##### 函数 `get_proceed_data_sequence(self, data_type)`
 
 作用: 筛选字典中的特定数据
 
-`proceed_data`: 字典数据
-
 `data_type`: 指定数据类型 *参数: confirmed_new confirmed_current asymptomatic_new asymptomatic_current recoveries deaths_new*
+
+返回结果: `proceed_data_sequence [list]`
 
 ### 数据分析器 *(Analyzer.py)*
 
@@ -58,7 +64,7 @@
 
 ### 数据渲染器 *(Renderer.py)*
 
-#### 函数 `output_as_line(data_sequence, data_type, filename, open_file, chn_trans)`
+#### 函数 `output_as_line(data_sequence, data_type, lib, filename, open_file, chn_trans)`
 
 作用: 将处理后的数据序列和指定的数据类型生成为折线图
 
@@ -66,17 +72,22 @@
 
 `data_type`: 数据的类型
 
+`lib[optional]`: 使用的库 *默认: `pygal` | 支持: `pygal`, `matplotlib`, `pandas_bokeh`*
+
 `filename[optional]`: 导出的文件名 *默认:`output.svg` | 后缀为`.svg`*
 
 `open_file[optional]`: 是否生成数据图后打开文件 *默认:False*
 
-`chn_trans`: 是否翻译数据类型为中文 *默认:`False`*
+`chn_trans[optional]`: 是否翻译数据类型为中文 *默认:`False`*
 
 ## 目标
 
 - [ ] 基本架构完成 *基本能用* **Processing** 
-- [ ] 支持2021和2020年的数据
+- [ ] 支持2021和2020年的数据 **Planning**
 - [ ] 地区支持 **Planning**
+- [ ] 多语言支持 **Planning**
+- [ ] 日志记录 **Planning**
+- [ ] 全GUI支持 **Planning**
 
 ### 数据更新器
 
@@ -84,9 +95,9 @@
 - [ ] 可调控是否自动更新 **Planning**
 - [ ] 显示更新所需时间 **Planning**
 
-### 数据生成器
+### 数据处理器
 
-- [ ] 类化 **Planning**
+- [x] 类化 **Processing**
 - [ ] 完善原数据的数据类型 **Planning**  
 
 ### 数据分析器
@@ -97,7 +108,7 @@
 
 - [ ] 类化 **Planning**
 - [x] 多库数据渲染 *pygal, matplotlib, pandas_bokeh* **Basically Finished**
-- [ ] 渲染参数设置 **Planning**
+- [ ] 渲染参数设置 **Processing**
 
 
 ## 已知问题 

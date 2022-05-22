@@ -14,7 +14,6 @@ data_view = pygal.Line()
 
 pd.options.display.notebook_repr_html = False
 plt.rcParams['figure.dpi'] = 75
-sns.set_theme(style='darkgrid')
 
 chinese_translation = {"confirmed_new": "新增感染", "confirmed_current": "当前感染", "asymptomatic_new": "新增无症状",
                        "asymptomatic_current": "当前无症状", "recoveries": "新增治愈", "deaths_new": "新增死亡"}

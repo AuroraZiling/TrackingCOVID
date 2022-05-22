@@ -28,7 +28,19 @@
 
 `original_html`: 原HTML文件
 
-`status`: 获取数据的状态 *online: 在线更新 | offline: 使用了备份*
+`status`: 获取数据的状态 *online: 在线更新 | offline: 因为离线而使用备份*
+
+##### 函数 `use_backup_html()`
+
+作用: 使用备份的HTML文件
+
+返回结果: `(original_html, status, backup_time)`
+
+`original_html`: 原HTML文件
+
+`status`: 获取数据的状态 *backup: 使用了备份*
+
+`backup_time`: HTML文件的备份时间
 
 ### 数据处理器 *(Generator.py)*
 
@@ -91,8 +103,8 @@
 
 ### 数据更新器
 
-- [ ] 类化 **Finished**
-- [ ] 可调控是否自动更新 **Planning**
+- [x] 类化 **Finished**
+- [x] 可直接使用备份数据 **Finished**
 - [ ] 显示更新所需时间 **Planning**
 
 ### 数据处理器

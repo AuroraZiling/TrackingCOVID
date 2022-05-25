@@ -51,5 +51,11 @@ class Generator:
     def get_proceed_data(self):
         return self.proceed_data
 
+    def get_proceed_data_sequences(self, data_types):
+        comprehensive_data = {}
+        for each in data_types:
+            comprehensive_data[each] = self.get_proceed_data_sequence(each)
+        return comprehensive_data
+
     def get_proceed_data_sequence(self, data_type):
         return [{each: self.proceed_data[each][data_type]} for each in list(self.proceed_data.keys())][::-1]

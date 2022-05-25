@@ -12,9 +12,9 @@ upd = updater.Updater(2022)
 data_aspects = {1: "confirmed_new|当日新增确诊", 2: "confirmed_current|当日已有确诊", 3: "asymptomatic_new|当日新增无症状", 4: "asymptomatic_current|当日已有无症状",
            5: "recoveries|当日新增痊愈", 6: "deaths_new|当日新增死亡"}
 
-renderer_aspects = {1: "Pygal", 2: "Matplotlib", 3: "Panda_bokeh"}
+renderer_aspects = {1: "Pygal", 2: "Plotly", 3: "Panda_bokeh"}
 
-render_types = {1: "折线图"}
+render_types = {1: "折线图", 2: "多重折线图"}
 
 console.rule("[green]Tracking COVID-19")
 data_mode = console.input("是否更新数据？[green]Y/N[white]").lower()
@@ -35,19 +35,24 @@ if year == 2022:
     console.rule("[green]数据类型")
     for each in range(1, len(data_aspects) + 1):
         print(f"{each}. {data_aspects[each]}")
-    aspect = data_aspects[int(console.input("请选择数据类型:"))].split("|")[0]
+    aspect = console.input("请选择数据类型(若需多选，则用逗号分割):")
+    if ',' in aspect:#todo 多方面的特判
+        aspect = [data_aspects[int(each)].split('|')[0] for each in aspect.split(',')]
+    else:
+        aspect = data_aspects[int(aspect)].split('|')[0]
     with console.status("正在生成疫情数据..."):
         gene = generator.Generator(original_html, year, "chinese")
     time.sleep(0.5)
     generated_data = gene.get_proceed_data_sequence(aspect)
+    generated_d_data = gene.get_proceed_data_sequences(["confirmed_current", "asymptomatic_current", "recoveries"])
     console.rule("[green]渲染类型")
     for each in range(1, len(renderer_aspects) + 1):
         print(f"{each}. {renderer_aspects[each]}")
     render_selection = renderer_aspects[int(console.input("请选择渲染库:"))]
     if render_selection == "Pygal":
         render = renderer.Pygal_render(generated_data, aspect, True, True)
-    elif render_selection == "Matplotlib":
-        render = renderer.Matplotlib_render(generated_data, aspect, True, True)
+    elif render_selection == "Plotly":
+        render = renderer.Plotly_render(generated_data, aspect, True, True)
     elif render_selection == "Panda_bokeh":
         render = renderer.Pandas_render(generated_data, aspect, True, True)
     else:
@@ -58,5 +63,7 @@ if year == 2022:
     render_selection = render_types[int(console.input("请选择渲染图表类型:"))]
     if render_selection == "折线图":
         render.output_as_line()
+    elif render_selection == "多重折线图":#todo
+        render.output_as_multiline(generated_d_data)
 else:
     raise ValueError("暂时只支持2022年的数据")

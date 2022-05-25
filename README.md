@@ -76,7 +76,9 @@
 
 ### 数据渲染器 *(Renderer.py)*
 
-#### 函数 `output_as_line(data_sequence, data_type, lib, filename, open_file, chn_trans)`
+#### 类: `Pygal_render`, `Plotly_render`, `Pandas_render`
+
+##### 函数 `output_as_line(data_sequence, data_type, lib, filename, open_file, chn_trans)`
 
 作用: 将处理后的数据序列和指定的数据类型生成为折线图
 
@@ -84,7 +86,7 @@
 
 `data_type`: 数据的类型
 
-`lib[optional]`: 使用的库 *默认: `pygal` | 支持: `pygal`, `matplotlib`, `pandas_bokeh`*
+`lib[optional]`: 使用的库 *默认: `pygal` | 支持: `pygal`, `plotly`, `pandas_bokeh`*
 
 `filename[optional]`: 导出的文件名 *默认:`output.svg` | 后缀为`.svg`*
 
@@ -118,10 +120,14 @@
 
 ### 数据渲染器
 
-- [ ] 类化 **Planning**
-- [x] 多库数据渲染 *pygal, matplotlib, pandas_bokeh* **Basically Finished**
+- [x] 类化 **Finished**
+- [x] 多库数据渲染 *pygal, plotly, pandas_bokeh* **Basically Finished**
 - [ ] 渲染参数设置 **Processing**
 
+#### 图的类型
+
+- [x] 单折线图 **Finished**
+- [x] 多折线图 **Finished**
 
 ## 已知问题 
 

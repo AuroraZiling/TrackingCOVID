@@ -10,7 +10,7 @@ def real_time_converter(data_time):
 
 
 class Generator:
-    def __init__(self, original_html, year=2022, date_format="default"):
+    def __init__(self, original_html: str, year=2022, date_format="default"):
         self.proceed_data = {}
         if year == 2022:
             temp_var = 0
@@ -51,11 +51,11 @@ class Generator:
     def get_proceed_data(self):
         return self.proceed_data
 
-    def get_proceed_data_sequences(self, data_types):
+    def get_proceed_data_sequences(self, data_types: list):
         comprehensive_data = {}
         for each in data_types:
             comprehensive_data[each] = self.get_proceed_data_sequence(each)
         return comprehensive_data
 
-    def get_proceed_data_sequence(self, data_type):
+    def get_proceed_data_sequence(self, data_type: str):
         return [{each: self.proceed_data[each][data_type]} for each in list(self.proceed_data.keys())][::-1]

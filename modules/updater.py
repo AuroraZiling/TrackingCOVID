@@ -9,7 +9,7 @@ class UpdaterError(Exception):
 
 
 class Updater:
-    def __init__(self, year):
+    def __init__(self, year: int):
         self.data_url_2022 = 'https://weekly.chinacdc.cn/news/TrackingtheEpidemic.htm'
         self.data_url_2021 = 'https://weekly.chinacdc.cn/news/TrackingtheEpidemic2021.htm'
         self.data_url_2020 = 'https://weekly.chinacdc.cn/news/TrackingtheEpidemic2020.htm'

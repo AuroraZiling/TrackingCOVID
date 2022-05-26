@@ -16,6 +16,8 @@ renderer_aspects = {1: "Pygal", 2: "Plotly", 3: "Panda_bokeh"}
 
 render_types = {1: "折线图", 2: "多重折线图"}
 
+multi_data = False
+
 console.rule("[green]Tracking COVID-19")
 data_mode = console.input("是否更新数据？[green]Y/N[white]").lower()
 with console.status("正在更新疫情数据..."):
@@ -36,15 +38,18 @@ if year == 2022:
     for each in range(1, len(data_aspects) + 1):
         print(f"{each}. {data_aspects[each]}")
     aspect = console.input("请选择数据类型(若需多选，则用逗号分割):")
-    if ',' in aspect:#todo 多方面的特判
+    if ',' in aspect:
+        multi_data = True
         aspect = [data_aspects[int(each)].split('|')[0] for each in aspect.split(',')]
     else:
         aspect = data_aspects[int(aspect)].split('|')[0]
     with console.status("正在生成疫情数据..."):
         gene = generator.Generator(original_html, year, "chinese")
     time.sleep(0.5)
-    generated_data = gene.get_proceed_data_sequence(aspect)
-    generated_d_data = gene.get_proceed_data_sequences(["confirmed_current", "asymptomatic_current", "recoveries"])
+    if not multi_data:
+        generated_data = gene.get_proceed_data_sequence(aspect)
+    else:
+        generated_data = gene.get_proceed_data_sequences(aspect)
     console.rule("[green]渲染类型")
     for each in range(1, len(renderer_aspects) + 1):
         print(f"{each}. {renderer_aspects[each]}")
@@ -62,8 +67,12 @@ if year == 2022:
         print(f"{each}. {render_types[each]}")
     render_selection = render_types[int(console.input("请选择渲染图表类型:"))]
     if render_selection == "折线图":
+        if multi_data:
+            raise ValueError(f"{render_selection}不支持多重数据")
         render.output_as_line()
-    elif render_selection == "多重折线图":#todo
-        render.output_as_multiline(generated_d_data)
+    elif render_selection == "多重折线图":
+        if not multi_data:
+            raise ValueError(f"{render_selection}不支持单数据")
+        render.output_as_multiline(generated_data)
 else:
     raise ValueError("暂时只支持2022年的数据")

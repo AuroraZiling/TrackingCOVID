@@ -18,29 +18,29 @@
 
 #### 类: `Updater`
 
-传参: `year` *数据年份(仅支持2022)*
+传参: `year: int` *数据年份(仅支持2022)*
 
 ##### 函数 `download_html()`
 
 作用: 下载原HTML文件，并存储至`data_backup`目录下
 
-返回结果: `(original_html, status)`
+返回结果: `(original_html, status): tuple`
 
-`original_html`: 原HTML文件
+`original_html: str`: 原HTML文件
 
-`status`: 获取数据的状态 *online: 在线更新 | offline: 因为离线而使用备份*
+`status: str`: 获取数据的状态 *online: 在线更新 | offline: 因为离线而使用备份*
 
 ##### 函数 `use_backup_html()`
 
 作用: 使用备份的HTML文件
 
-返回结果: `(original_html, status, backup_time)`
+返回结果: `(original_html, status, backup_time): tuple`
 
-`original_html`: 原HTML文件
+`original_html: str`: 原HTML文件
 
-`status`: 获取数据的状态 *backup: 使用了备份*
+`status: str`: 获取数据的状态 *backup: 使用了备份*
 
-`backup_time`: HTML文件的备份时间
+`backup_time: str`: HTML文件的备份时间
 
 ### 数据处理器 *(Generator.py)*
 
@@ -50,25 +50,33 @@
 
 传参:
 
-`original_html`: 原始HTML文本
+`original_html: str`: 原始HTML文本
 
-`year`: 数据年份 *目前仅有2022年*
+`year: int`: 数据年份 *目前仅有2022年(默认)*
 
-`date_format`: 日期格式 *默认:default: January 1, 2022 | chinese: 2022年1月1日*
+`date_format: str`: 日期格式 *默认:default: January 1, 2022 | chinese: 2022年1月1日*
 
 ##### 函数 `get_proceed_data(self)`
 
 作用: 获取处理后的数据
 
-返回结果: `proceed_data [dict]`
+返回结果: `proceed_data: dict`
 
-##### 函数 `get_proceed_data_sequence(self, data_type)`
+##### 函数 `get_proceed_data_sequence(self, data_type: str)`
 
 作用: 筛选字典中的特定数据
 
 `data_type`: 指定数据类型 *参数: confirmed_new confirmed_current asymptomatic_new asymptomatic_current recoveries deaths_new*
 
-返回结果: `proceed_data_sequence [list]`
+返回结果: `proceed_data_sequence: list`
+
+##### 函数 `get_proceed_data_sequences(self, data_types: list)`
+
+作用: 筛选字典中的多特定数据
+
+`data_types`: 指定多数据类型 *参数: confirmed_new confirmed_current asymptomatic_new asymptomatic_current recoveries deaths_new*
+
+返回结果: `proceed_data_sequences: dict`
 
 ### 数据分析器 *(Analyzer.py)*
 
@@ -78,21 +86,27 @@
 
 #### 类: `Pygal_render`, `Plotly_render`, `Pandas_render`
 
-##### 函数 `output_as_line(data_sequence, data_type, lib, filename, open_file, chn_trans)`
+##### 函数 `output_as_line(self, filename, window_title)`
 
 作用: 将处理后的数据序列和指定的数据类型生成为折线图
 
-`data_sequence`: 处理后的数据序列
+`filename[optional]`: 导出的文件名
 
-`data_type`: 数据的类型
+`window_title[optional]`: 是否使用自定义标题 *默认:`None`*
 
-`lib[optional]`: 使用的库 *默认: `pygal` | 支持: `pygal`, `plotly`, `pandas_bokeh`*
+*无返回结果，但会在目录下生成文件*
 
-`filename[optional]`: 导出的文件名 *默认:`output.svg` | 后缀为`.svg`*
+##### 函数 `output_as_multiline(self, data_series, filename, window_title)`
 
-`open_file[optional]`: 是否生成数据图后打开文件 *默认:False*
+作用: 将处理后的多重数据序列和指定的多重数据类型生成为多重折线图
 
-`chn_trans[optional]`: 是否翻译数据类型为中文 *默认:`False`*
+`data_series`: 处理后的多重数据序列
+
+`filename[optional]`: 导出的文件名
+
+`window_title[optional]`: 是否使用自定义标题 *默认:`None`*
+
+*无返回结果，但会在目录下生成文件*
 
 ## 目标
 
@@ -122,7 +136,7 @@
 
 - [x] 类化 **Finished**
 - [x] 多库数据渲染 *pygal, plotly, pandas_bokeh* **Basically Finished**
-- [ ] 渲染参数设置 **Processing**
+- [ ] 渲染参数设置 **Planning**
 
 #### 图的类型
 

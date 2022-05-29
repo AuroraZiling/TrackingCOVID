@@ -59,7 +59,7 @@ if year == 2022:
     elif render_selection == "Plotly":
         render = renderer.Plotly_render(generated_data, aspect, True, True)
     elif render_selection == "Panda_bokeh":
-        render = renderer.Pandas_render(generated_data, aspect, True, True)
+        render = renderer.Pandas_render(generated_data, aspect, True)
     else:
         raise ValueError("渲染库选择错误")
     console.rule("[green]图表类型")

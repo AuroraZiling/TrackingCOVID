@@ -115,7 +115,7 @@
 - [ ] 地区支持 **Planning**
 - [ ] 多语言支持 **Planning**
 - [ ] 日志记录 **Planning**
-- [ ] 全GUI支持 **Planning**
+- [ ] 全GUI支持 **Processing**
 
 ### 数据更新器
 

@@ -14,7 +14,7 @@ class Pygal_render:
         self.data_sequence = data_sequence
         self.open_file = open_file
         self.chn_trans = chn_trans
-        if os.path.exists("rendered_data"):
+        if not os.path.exists("rendered_data"):
             os.mkdir("rendered_data")
 
         if type(self.data_sequence) == list:  # 单数据特殊处理
@@ -58,7 +58,7 @@ class Plotly_render:
         self.data_sequence = data_sequence
         self.open_file = open_file
         self.chn_trans = chn_trans
-        if os.path.exists("rendered_data"):
+        if not os.path.exists("rendered_data"):
             os.mkdir("rendered_data")
 
         if type(self.data_sequence) == list:  # 单数据特殊处理
@@ -106,7 +106,7 @@ class Pandas_render:
         self.data_sequence = data_sequence
         self.open_file = open_file
         self.chn_trans = chn_trans
-        if os.path.exists("rendered_data"):
+        if not os.path.exists("rendered_data"):
             os.mkdir("rendered_data")
 
         if type(self.data_sequence) == list:  # 单数据特殊处理
